@@ -5,7 +5,7 @@ function server(io) {
     if (debug) {
         maxPlayers = 2;
     }
-    var SpadesGame = require(spadesGame.js);
+    var SpadesGame = require("spadesGame.js");
     var clientPlayers = {};
     var clients = {};
     var hosts = {};
