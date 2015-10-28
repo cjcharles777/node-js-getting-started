@@ -146,3 +146,5 @@ function compareRank(a, b)
     if (intRegex.test(a.rank) && b.rank == "Q") return -1;
     if (intRegex.test(a.rank) && b.rank == "J") return -1;
 }
+
+module.exports = SpadesGame;
