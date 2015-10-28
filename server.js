@@ -9,6 +9,7 @@ function server(io) {
     var clientPlayers = {};
     var clients = {};
     var hosts = {};
+    var spadesTable = {};
     var games = [];
 
     function log(msg, type) {
@@ -191,6 +192,7 @@ function server(io) {
             var room = clients[socketId];
             var players = socketsInRoom(room);
             if (players.length == maxPlayers) {
+                spadesTable[room] = new SpadesGame();
                 setTimeout(function () {
                     startTimeOut(room);
                 }, timeOutDelay);
@@ -254,6 +256,10 @@ function server(io) {
             var room = clients[data.socketId];
             delete data.socketId;
             io.to(room).emit('clientUpdateBall', data);
+        });
+        socket.on('shuffleAndDeal', function(data){
+            var room = clients[data.socketID];
+            io.to(room).emit('dealtOne', spadesTable[room].dealOne());
         });
     });
 }
