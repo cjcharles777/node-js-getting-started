@@ -105,7 +105,7 @@ function server(io) {
         }
 
         var players = socketsInRoom(room);
-
+        log('playerCounter... '+playerCounter+' ....  maxPlayers ....'+ maxPlayers + '....times .... '+times);
         if (times > 3) {
             return;
         }
