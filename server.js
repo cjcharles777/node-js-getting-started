@@ -1,5 +1,5 @@
 function server(io) {
-    var debug = false;
+    var debug = true;
     var timeOutDelay = 2500;
     var maxPlayers = 4;
     if (debug) {
@@ -124,7 +124,7 @@ function server(io) {
                 });
             }
             else {
-                log('socket not found :\\ '+sid,'e');
+                console.log('socket not found :\\ '+sid,'e');
             }
         }
     }
@@ -133,8 +133,8 @@ function server(io) {
         clients[socket.id] = null;
 
         socket.on('error', function(data) {
-            log('onError','e');
-            log(data,'e');
+            console.log('onError','e');
+            console.log(data,'e');
         });
 
         socket.on('host', function(data, ack) {
@@ -146,10 +146,10 @@ function server(io) {
                     clients[socket.id] = room;
                     hosts[socket.id] = true;
                     ack(room);
-                    log('host '+socket.id+' connected');
+                    console.log('host '+socket.id+' connected');
                 }
                 else {
-                    log(err,'e');
+                    console.log(err,'e');
                     sendError(1, "host: can't join room", socket);
                 }
             });
@@ -173,11 +173,11 @@ function server(io) {
                             var players = socketsInRoom(room);
                             clientPlayers[socket.id] = players.length - 1;
                             ack({ playersCount: players.length});
-                            log('client ' + socket.id + ' connected to room ' + room + ' (' + players.length + '/'+maxPlayers+')');
+                            console.log('client ' + socket.id + ' connected to room ' + room + ' (' + players.length + '/'+maxPlayers+')');
                             io.to(room).emit('joined', { playersCount: players.length });
                         }
                         else {
-                            log(err, 'e');
+                            console.log(err, 'e');
                             sendError(3, "client: can't join room", socket);
                         }
                     });
