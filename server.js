@@ -3,7 +3,7 @@ function server(io) {
     var timeOutDelay = 2500;
     var maxPlayers = 4;
     if (debug) {
-        maxPlayers = 2;
+        maxPlayers = 4;
     }
     var SpadesGame = require("./spadesGame.js");
     var clientPlayers = {};
