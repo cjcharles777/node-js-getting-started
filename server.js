@@ -192,7 +192,7 @@ function server(io) {
             var room = clients[socketId];
             var players = socketsInRoom(room);
             if (players.length == maxPlayers) {
-                //spadesTable[room] = new SpadesGame();
+                spadesTable[room] = new SpadesGame();
                 setTimeout(function () {
                     startTimeOut(room);
                 }, timeOutDelay);
