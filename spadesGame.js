@@ -51,23 +51,23 @@ function Deck() {
     console.trace();
     console.log('instance created');
     this._deck = [];
-    var o = this.conf,
+    var o,
         l,i,s,r,j;
     // populate draw pile
     for (i = 0; i < 1; i++) {
         // standard
-        for (s in o.suits) {
-            for (r in o.ranks) {
+        for (s in this.suits) {
+            for (r in this.ranks) {
                 l = this._deck.length;
-                this._deck[l] = new Card(r, o.ranks[r], s, o.suits[s]);
+                this._deck[l] = new Card(r, this.ranks[r], s, this.suits[s]);
                 console.log(this._deck[l].toString());
             }
         }
         // jokers
-        for (j = 0; j < o.jokers; j++) {
+        for (j = 0; j < this.jokers; j++) {
             l = this._deck.length;
             // suit will always be 1 or 2
-            this._deck[l] = new Card("N", o.jokerText, (j % 2) + 1, '');
+            this._deck[l] = new Card("N", this.jokerText, (j % 2) + 1, '');
         }
     }
 
