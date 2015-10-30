@@ -59,6 +59,9 @@ function Deck() {
         for (s in this.suits) {
             for (r in this.ranks) {
                 l = this._deck.length;
+                console.log('l = '+l);
+                console.log('r = '+r);
+                console.log('s = '+s);
                 this._deck[l] = new Card(r, this.ranks[r], s, this.suits[s]);
                 console.log(this._deck[l].toString());
             }
