@@ -51,11 +51,11 @@ function Deck() {
     console.trace();
     console.log('instance created');
     this._deck = [];
-    var o,
-        l,i,s,r,j;
+    var l,i,s,r,j;
     // populate draw pile
     for (i = 0; i < 1; i++) {
         // standard
+        console.log('suits' + this.suits);
         for (s in this.suits) {
             for (r in this.ranks) {
                 l = this._deck.length;
