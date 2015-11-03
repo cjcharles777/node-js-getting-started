@@ -104,7 +104,7 @@ Deck.prototype.add =
         this._deck.push(card);
     };
 
-Deck.defaults =
+Deck.prototype.defaults =
 {
     "ofString " : " of ",
     "jokers": 2,
