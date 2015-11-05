@@ -3,14 +3,12 @@
  */
 function SpadesGame()
 {
+
     console.trace();
     this.gameDeck = new Deck();
     this.playersHands = new Array(4);
     this.playersTurn = 0;
-    for (i=0; i <3; i++)
-    {
-        myarray[i]=new Array(13);
-    }
+
 }
 
 
@@ -46,8 +44,8 @@ function compareRank(a, b)
     if (intRegex.test(a.rank) && b.rank == "J") return -1;
 }
 
-function Deck() {
-
+function Deck(conf) {
+    var o = objExtend(Deck.defaults, conf);
     console.trace();
     console.log('instance created');
     this._deck = [];
@@ -55,14 +53,14 @@ function Deck() {
     // populate draw pile
     for (i = 0; i < 1; i++) {
         // standard
-        console.log('suits' + this.suits);
-        for (s in this.suits) {
-            for (r in this.ranks) {
+        console.log('suits' + o.suits);
+        for (s in o.suits) {
+            for (r in o.ranks) {
                 l = this._deck.length;
                 console.log('l = '+l);
                 console.log('r = '+r);
                 console.log('s = '+s);
-                this._deck[l] = new Card(r, this.ranks[r], s, this.suits[s]);
+                this._deck[l] = new Card(r, o.ranks[r], s, o.suits[s]);
                 console.log(this._deck[l].toString());
             }
         }
@@ -104,7 +102,7 @@ Deck.prototype.add =
         this._deck.push(card);
     };
 
-Deck.prototype.defaults =
+Deck.defaults =
 {
     "ofString " : " of ",
     "jokers": 2,
@@ -147,6 +145,16 @@ function Card(rank, rankString, suit, suitString)
 Card.prototype.toString = function()
 {
     return this.suitString !== "" ? this.rankString + Deck.defaults.ofString + this.suitString: this.rankString;
+}
+
+function objExtend(o, ex) {
+    if (!ex) {
+        return o;
+    }
+    for (var p in ex) {
+        o[p] = ex[p];
+    }
+    return o;
 }
 
 module.exports = SpadesGame;
