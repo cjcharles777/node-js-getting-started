@@ -82,7 +82,7 @@ Deck.prototype.shuffle =
     function()
     {
         console.log("Cards before shuffle:" + this._deck);
-        for (i = this._deck.length; i > 0; i--) {
+        for (i = this._deck.length - 1; i > 0; i--) {
             toSwap = Math.floor(Math.random() * i);
             tempCard = this._deck[i];
             this._deck[i] = this._deck[toSwap];
@@ -139,6 +139,7 @@ function Card(rank, rankString, suit, suitString)
     this.rankString = rankString;
     this.suit = suit;
     this.suitString = suitString;
+    this.cardId = suit + '_' + rank;
     return this;
 }
 
@@ -156,6 +157,4 @@ function objExtend(o, ex) {
     }
     return o;
 }
-
-
 module.exports = SpadesGame;
