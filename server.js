@@ -261,7 +261,7 @@ function server(io) {
             var room = clients[data.socketId];
             var players = socketsInRoom(room);
             for (var i = 0; i < players.length; i++) {
-                var outSocket = io.sockets.connected[players[i]];
+                var outSocket = players;
                 outSocket.emit('dealtOne', spadesTable[room].getHand(i));
                 //Do something
             }
