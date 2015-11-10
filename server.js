@@ -192,7 +192,7 @@ function server(io) {
             var room = clients[socketId];
             var players = socketsInRoom(room);
             if (players.length == maxPlayers) {
-                spadesTable[room] = new SpadesGame();
+                spadesTable[room] = new SpadesGame(players);
                 setTimeout(function () {
                     startTimeOut(room);
                 }, timeOutDelay);
@@ -259,9 +259,13 @@ function server(io) {
         });
         socket.on('shuffleAndDeal', function(data){
             var room = clients[data.socketId];
-            log(room);
-            log(data);
-            io.to(room).emit('dealtOne', spadesTable[room].dealOne());
+            var players = socketsInRoom(room);
+            for (var i = 0; i < players.length; i++) {
+                var outSocket = io.sockets.connected[players[i]];
+                outSocket.emit('dealtOne', spadesTable[room].getHand(i));
+                //Do something
+            }
+
         });
     });
 }

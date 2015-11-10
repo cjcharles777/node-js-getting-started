@@ -1,13 +1,14 @@
 /**
  * Created by cedric on 10/27/15.
  */
-function SpadesGame()
+function SpadesGame(players)
 {
 
     console.trace();
     this.gameDeck = new Deck();
-    this.playersHands = new Array(4);
+    this.playersHands;
     this.playersTurn = 0;
+    this.players = players;
 
 }
 
@@ -18,7 +19,27 @@ SpadesGame.prototype.dealOne = function()
     return c;
 }
 
+SpadesGame.prototype.dealOut = function()
+{
+    var i = 0;
+    while (this._deck.length > 0)
+    {
+        this.playersHands[players[i]][this.playersHands[players[i]].length] = this.dealOne();
+        if (i == 3)
+        {
+            i = 0;
+        }
+        else
+        {
+            i++;
+        }
 
+    }
+}
+SpadesGame.prototype.getHand = function()
+{
+    return this.playersHands[players[i]];
+}
 
 function compareRank(a, b)
 {
