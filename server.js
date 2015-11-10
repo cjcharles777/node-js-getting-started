@@ -258,8 +258,9 @@ function server(io) {
             io.to(room).emit('clientUpdateBall', data);
         });
         socket.on('shuffleAndDeal', function(data){
-            var room = clients[data.socketID];
+            var room = clients[data.socketId];
             log(room);
+            log(data);
             io.to(room).emit('dealtOne', spadesTable[room].dealOne());
         });
     });
