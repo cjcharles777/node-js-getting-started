@@ -259,6 +259,7 @@ function server(io) {
         });
         socket.on('shuffleAndDeal', function(data){
             var room = clients[data.socketID];
+            log(room);
             io.to(room).emit('dealtOne', spadesTable[room].dealOne());
         });
     });
