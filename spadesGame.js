@@ -1,12 +1,9 @@
-/**
- * Created by cedric on 10/27/15.
- */
 function SpadesGame(players)
 {
 
     console.trace();
     this.gameDeck = new Deck();
-    this.playersHands;
+    this.playersHands = [];
     this.playersTurn = 0;
     this.players = players;
 
@@ -22,9 +19,15 @@ SpadesGame.prototype.dealOne = function()
 SpadesGame.prototype.dealOut = function()
 {
     var i = 0;
-    while (this._deck.length > 0)
+    this.gameDeck.shuffle();
+    this.gameDeck.shuffle();
+    while (this.gameDeck._deck.length > 0)
     {
-        this.playersHands[players[i]][this.playersHands[players[i]].length] = this.dealOne();
+        if(this.playersHands[this.players[i]] == undefined)
+        {
+            this.playersHands[this.players[i]] = [];
+        }
+        this.playersHands[this.players[i]][this.playersHands[this.players[i]].length] = this.dealOne();
         if (i == 3)
         {
             i = 0;
@@ -36,9 +39,9 @@ SpadesGame.prototype.dealOut = function()
 
     }
 }
-SpadesGame.prototype.getHand = function()
+SpadesGame.prototype.getHand = function(number)
 {
-    return this.playersHands[players[i]];
+    return this.playersHands[this.players[number]];
 }
 
 function compareRank(a, b)

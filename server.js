@@ -260,8 +260,13 @@ function server(io) {
         socket.on('shuffleAndDeal', function(data){
             var room = clients[data.socketId];
             var players = socketsInRoom(room);
+            log('players... '+ players);
+            spadesTable[room].dealOut();
             for (var i = 0; i < players.length; i++) {
-                var outSocket = players[i];
+                log('players... '+players[i]);
+                var outSocket = getSocket(players[i]);
+                log('outSocket... '+outSocket);
+
                 outSocket.emit('dealtOne', spadesTable[room].getHand(i));
                 //Do something
             }
